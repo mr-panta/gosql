@@ -156,7 +156,7 @@ func (o *orm) Update(row interface{}) (err error) {
 	var primaryValue interface{}
 	keys, values, _ := o.extractRow(row)
 	for i, key := range keys {
-		if cfg.AutoIncrement && cfg.PrimaryKey == key {
+		if cfg.PrimaryKey == key {
 			primaryValue = values[i]
 		} else {
 			keyQuery += fmt.Sprintf("`%s`=?,", key)
@@ -240,7 +240,7 @@ func (o *orm) Delete(row interface{}) (err error) {
 	var primaryValue interface{}
 	keys, values, _ := o.extractRow(row)
 	for i, key := range keys {
-		if cfg.AutoIncrement && cfg.PrimaryKey == key {
+		if cfg.PrimaryKey == key {
 			primaryValue = values[i]
 			break
 		}
